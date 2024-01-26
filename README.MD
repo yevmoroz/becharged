@@ -1,25 +1,23 @@
-## Expo starter
+## BeCharged
 
-Expo starter package, includes:
-- Expo with TypeScript support
-- Theme base styles
-- ESLint + Prettier
-- Feature based architecture
-
-### Fork
-
-After you fork project under it's new name, update `expo-starter` in `package.json` file to reflect the change. Make sure you configure `EXPO_TOKEN` (from expo.dev account settings > access tokens) and `EXPO_PROJECT_ID` (from Projects > Project Overview > ID, looks like UUID)
+Imagine the world where EV chargin is done seamlessly
 
 ### Development
 
-Install dependencies with `npm install`. Create new project in Expo via [this link](https://expo.dev/) and following instructions how to set it up.
-Start developement by running regular `npm start`. Follow on screen prompt to setup expo on iOS/Android device.
+Install dependencies with `npm install`. Start developement by running regular `npm start`. Follow on screen prompt to setup expo on iOS/Android device.
 
-### WSL support
+### Considerations
 
-If you're using WSL, there is no initial support for routes from WSL through Windows to iOS/Android device. In order to make such support feel free to make use of `scripts/wslbridge.ps1`.
+Following are consideraitons that can be made for an app that helps with EV charging. What is currently unmarked will be implemented as iteration
 
-Run on windows `scripts/wslbridge.ps1` and use `npm run start:wsl` instead of regular start.
+- [x] get list of charging stations from https://openchargemap.org/ API
+- [x] show surrounding charging stations
+-- [ ] based on given location (via mapbox.places API call)
+-- [x] based on device location
+-- [x] as a list
+-- [ ] on a map (via RNMapBox)
+- [ ] call maps app to get directions
+- [x] start charging for select station
 
 ### References
 - [Expo](https://expo.dev/)
