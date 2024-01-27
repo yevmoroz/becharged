@@ -1,7 +1,9 @@
-import { ACCESS_TOKEN, BASE_URL } from './const';
+import { ACCESS_TOKEN, BASE_URL, PUBLIC_STATUS_ID } from './const';
 
 const baseQueryList = [
-  'distance=10',
+  `statustypeid=${PUBLIC_STATUS_ID}`,
+  // switch to universal-based units
+  'distanceunit=km',
   // less data that's not needed
   'compact=true',
   // less information that describes data

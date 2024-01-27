@@ -6,6 +6,7 @@ import { ApiError, fetchApi, getApiUrlForPath } from '../open-charge-map/utils';
 type CharginStationDataItem = {
   addressInfo: {
     title: string;
+    distance: number; // in km
   };
 };
 
@@ -13,7 +14,8 @@ type OptionalApiError = ApiError | null;
 type OptionalChargingStationsResponse = CharginStationDataItem[] | null;
 
 export const useChargingStationsByLocation = (
-  location: OptionalLocationDetails
+  location: OptionalLocationDetails,
+  rangeInKm: number
 ): [OptionalChargingStationsResponse, OptionalApiError] => {
   const [result, setResult] = useState<OptionalChargingStationsResponse>(null);
   const [error, setError] = useState<OptionalApiError>(null);
@@ -22,6 +24,7 @@ export const useChargingStationsByLocation = (
     ? getApiUrlForPath('poi', {
         latitude: location.latitude,
         longitude: location.longitude,
+        distance: rangeInKm,
       })
     : null;
 
