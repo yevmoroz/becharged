@@ -12,12 +12,13 @@ Following are consideraitons that can be made for an app that helps with EV char
 
 - [x] get list of charging stations from https://openchargemap.org/ API
 - [x] show surrounding charging stations
--- [ ] based on given location (via mapbox.places API call)
 -- [x] based on device location
 -- [x] as a list
+-- [ ] based on given location (via mapbox.places API call)
 -- [ ] on a map (via RNMapBox)
 - [ ] call maps app to get directions
 - [x] start charging for select station
+- [ ] user-friendly API handling
 
 ### References
 - [Expo](https://expo.dev/)

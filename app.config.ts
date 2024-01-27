@@ -25,15 +25,15 @@ const config: ExpoConfig = {
   },
   extra: {
     eas: {
-      projectId: process.env.EXPO_PROJECT_ID
-    }
+      projectId: process.env.EXPO_PROJECT_ID,
+    },
   },
   updates: {
-    url: `https://u.expo.dev/${process.env.EXPO_PROJECT_ID}`
+    url: `https://u.expo.dev/${process.env.EXPO_PROJECT_ID}`,
   },
   runtimeVersion: {
-    policy: 'appVersion'
-  }
+    policy: 'appVersion',
+  },
 };
 
 export default config;

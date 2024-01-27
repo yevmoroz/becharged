@@ -1,11 +1,18 @@
 import { useColorScheme } from 'react-native';
 
-import { Theme } from './type';
+type Colors = {
+  PRIMARY: string;
+  SECONDARY: string;
+};
+
+export type Theme = {
+  colors: Colors;
+};
 
 export const useTheme = <T>(themeableStyles: (theme: Theme) => T) => {
   const colorScheme = useColorScheme();
 
-  let colors = null;
+  let colors: Colors;
   if (colorScheme === 'light') {
     colors = require('./light/colors');
   } else if (colorScheme === 'dark') {
