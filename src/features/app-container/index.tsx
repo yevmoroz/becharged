@@ -8,21 +8,21 @@ type Props = {
 };
 
 export const AppContainer: React.FC<Props> = (props) => {
-  const themedStyles = useTheme(styles);
+  const styles = useTheme(themeableStyles);
   return (
-    <View style={themedStyles.container}>
+    <View style={styles.container}>
       {props.children}
-      <StatusBar backgroundColor={themedStyles.container.backgroundColor} />
+      <StatusBar backgroundColor={styles.container.backgroundColor} />
     </View>
   );
 };
 
-const styles = (theme: Theme) =>
+const themeableStyles = (theme: Theme) =>
   StyleSheet.create({
     container: {
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: theme.colors.PRIMARY,
+      backgroundColor: theme.colors.SECONDARY,
     },
   });
