@@ -1,5 +1,5 @@
 import { requestForegroundPermissionsAsync, getCurrentPositionAsync } from 'expo-location';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 const getDeviceCoordinates = async () => {
   const { status } = await requestForegroundPermissionsAsync();
@@ -21,11 +21,21 @@ export type LocationDetails = {
 
 export type OptionalLocationDetails = LocationDetails | null;
 type OptionalError = Error | null;
+type RefetchCallback = () => void;
 
-export const useDeviceLocation = (): [OptionalLocationDetails, OptionalError] => {
+export const useDeviceLocation = (): [
+  OptionalLocationDetails,
+  OptionalError,
+  boolean,
+  RefetchCallback,
+] => {
   const [location, setLocation] = useState<OptionalLocationDetails>(null);
   const [error, setError] = useState<OptionalError>(null);
+  const locationNotReady = location === null && error === null;
   const noCoordinates = !location?.latitude || !location?.longitude;
+  const refetchCallback = useCallback(() => {
+    setLocation(null);
+  }, []);
 
   useEffect(() => {
     if (noCoordinates) {
@@ -40,5 +50,5 @@ export const useDeviceLocation = (): [OptionalLocationDetails, OptionalError] =>
     }
   }, [noCoordinates]);
 
-  return [location, error];
+  return [location, error, locationNotReady, refetchCallback];
 };

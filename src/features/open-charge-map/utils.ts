@@ -1,4 +1,5 @@
 import { ACCESS_TOKEN, BASE_URL, PUBLIC_STATUS_ID } from './const';
+import { ApiError } from '../api-error';
 
 const baseQueryList = [
   `statustypeid=${PUBLIC_STATUS_ID}`,
@@ -26,7 +27,7 @@ export const getApiUrlForPath = (
   }
   const queryList = Object.keys(query).map((key) => `${key}=${query[key]}`) || [];
   const queryString = [...queryList, ...baseQueryList].join('&');
-  const apiUrl = `${BASE_URL}/${path}?${queryString}`;
+  const apiUrl = `${path}?${queryString}`;
   return apiUrl;
 };
 
@@ -35,8 +36,9 @@ export const getApiUrlForPath = (
  * @param url
  * @throws {ApiError}
  */
-export const fetchApi = async (url: string) => {
-  const response = await fetch(url, {
+export const fetchApi = async (url: string, method: string = 'GET') => {
+  const response = await fetch(`${BASE_URL}/${url}`, {
+    method,
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
@@ -50,17 +52,3 @@ export const fetchApi = async (url: string) => {
 
   return await response.json();
 };
-
-/**
- * Generic ApiError that uses Response from generic fetch to build a meaningful error message
- */
-export class ApiError extends Error {
-  constructor(response: Response) {
-    super(`Failed fetching URL: ${response.url}`);
-    this.name = 'ApiError';
-    this.status = response.status;
-    this.response = response;
-  }
-  status: number;
-  response: Response;
-}

@@ -18,6 +18,7 @@ Following are consideraitons that can be made for an app that helps with EV char
 -- [ ] on a map (via RNMapBox)
 - [ ] call maps app to get directions
 - [x] start charging for select station
+- [x] refresh list on pull-down
 - [ ] user-friendly API handling
 
 ### References
