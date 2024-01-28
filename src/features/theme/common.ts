@@ -8,3 +8,5 @@ export const PAD_4XL = 72;
 export const FONT_WEIGHT_BOLD = 'bold';
 
 export const FONT_SIZE_TITLE = 18;
+
+export const BORDER_RADIUS_S = 5;

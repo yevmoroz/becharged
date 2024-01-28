@@ -6,7 +6,7 @@ import { useChargingStationsByLocation } from '../charging-station/hooks';
 import { useDeviceLocation } from '../location/hooks';
 import { PAD_4XL } from '../theme/common';
 
-export const ChargingStations = () => {
+export const ChargingStation = () => {
   const [location, locationError] = useDeviceLocation();
   const [chargingStations, chargingStationsError] = useChargingStationsByLocation(location);
   const notReadyYet =

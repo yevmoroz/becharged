@@ -1,6 +1,13 @@
 import { View, StyleSheet, Text } from 'react-native';
 
-import { FONT_SIZE_TITLE, FONT_WEIGHT_BOLD, PAD_L, PAD_S, PAD_XXL } from '../../theme/common';
+import {
+  BORDER_RADIUS_S,
+  FONT_SIZE_TITLE,
+  FONT_WEIGHT_BOLD,
+  PAD_L,
+  PAD_S,
+  PAD_XXL,
+} from '../../theme/common';
 import { Theme, useTheme } from '../../theme/hooks';
 
 export const Message = (props) => {
@@ -21,6 +28,7 @@ const themeableStyles = (theme: Theme) =>
       marginVertical: PAD_S,
       paddingHorizontal: PAD_S,
       paddingVertical: PAD_L,
+      borderRadius: BORDER_RADIUS_S,
     },
     title: {
       textAlign: 'center',

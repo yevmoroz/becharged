@@ -2,6 +2,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { View, StyleSheet, Text } from 'react-native';
 
 import {
+  BORDER_RADIUS_S,
   FONT_SIZE_TITLE,
   FONT_WEIGHT_BOLD,
   PAD_L,
@@ -10,10 +11,10 @@ import {
   PAD_XXL,
 } from '../../theme/common';
 import { Theme, useTheme } from '../../theme/hooks';
-import { CharginStationDataItem } from '../hooks';
+import { ChargingStationDataItem } from '../hooks';
 
 type Props = {
-  item: CharginStationDataItem;
+  item: ChargingStationDataItem;
 };
 
 export const ChargingStationListItem = (props: Props) => {
@@ -39,6 +40,7 @@ const themeableStyles = (theme: Theme) =>
       paddingVertical: PAD_L,
       backgroundColor: theme.colors.PRIMARY,
       flexDirection: 'row',
+      borderRadius: BORDER_RADIUS_S,
     },
     icon: {
       marginRight: PAD_M,

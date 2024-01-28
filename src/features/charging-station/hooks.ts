@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { OptionalLocationDetails } from '../location/hooks';
 import { ApiError, fetchApi, getApiUrlForPath } from '../open-charge-map/utils';
 
-export type CharginStationDataItem = {
+export type ChargingStationDataItem = {
   addressInfo: {
     title: string;
     distance: number; // in km
@@ -11,7 +11,7 @@ export type CharginStationDataItem = {
 };
 
 type OptionalApiError = ApiError | null;
-type ChargingStationsResponse = CharginStationDataItem[];
+type ChargingStationsResponse = ChargingStationDataItem[];
 type OptionalChargingStationsResponse = ChargingStationsResponse | null;
 
 export const useChargingStationsByLocation = (
