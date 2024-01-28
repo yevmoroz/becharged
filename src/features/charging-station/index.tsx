@@ -7,10 +7,10 @@ import { useDeviceLocation } from '../location/hooks';
 import { PAD_4XL } from '../theme/common';
 
 export const ChargingStation = () => {
-  const [location, locationError] = useDeviceLocation();
-  const [chargingStations, chargingStationsError] = useChargingStationsByLocation(location);
-  const notReadyYet =
-    chargingStations === null && locationError === null && chargingStationsError === null;
+  const [location, locationError, locationNotReady, fetchLocation] = useDeviceLocation();
+  const [chargingStations, chargingStationsError, chargingStationsNotReady] =
+    useChargingStationsByLocation(location);
+  const notReadyYet = locationNotReady || chargingStationsNotReady;
 
   let content;
   if (notReadyYet) {
@@ -22,7 +22,13 @@ export const ChargingStation = () => {
   } else if (!chargingStations?.length) {
     content = <Message>No charging stations found in the area</Message>;
   } else {
-    content = <ChargingStationList items={chargingStations} />;
+    content = (
+      <ChargingStationList
+        items={chargingStations}
+        onRefresh={fetchLocation}
+        refreshing={notReadyYet}
+      />
+    );
   }
 
   return <View style={styles.container}>{content}</View>;

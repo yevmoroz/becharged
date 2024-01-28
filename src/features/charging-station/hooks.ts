@@ -1,9 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
+import { ApiError } from '../api-error';
+import { fetchApi as fetchEvEnergyApi } from '../ev-energy/utils';
 import { OptionalLocationDetails } from '../location/hooks';
-import { ApiError, fetchApi, getApiUrlForPath } from '../open-charge-map/utils';
+import { fetchApi as fetchOpenChargeMapApi, getApiUrlForPath } from '../open-charge-map/utils';
 
 export type ChargingStationDataItem = {
+  id: number;
   addressInfo: {
     title: string;
     distance: number; // in km
@@ -17,9 +20,10 @@ type OptionalChargingStationsResponse = ChargingStationsResponse | null;
 export const useChargingStationsByLocation = (
   location: OptionalLocationDetails,
   rangeInKm: number = 5
-): [OptionalChargingStationsResponse, OptionalApiError] => {
+): [OptionalChargingStationsResponse, OptionalApiError, boolean] => {
   const [result, setResult] = useState<OptionalChargingStationsResponse>(null);
   const [error, setError] = useState<OptionalApiError>(null);
+  const resultNotReady = result === null && error === null;
   const hasCoordinates = location?.latitude && location.longitude;
   const poiUrl = hasCoordinates
     ? getApiUrlForPath('poi', {
@@ -31,9 +35,22 @@ export const useChargingStationsByLocation = (
 
   useEffect(() => {
     if (poiUrl) {
-      fetchApi(poiUrl).then(setResult).catch(setError);
+      fetchOpenChargeMapApi(poiUrl).then(setResult).catch(setError);
     }
   }, [poiUrl]);
 
-  return [result, error];
+  return [result, error, resultNotReady];
+};
+
+export const useStartCharging = () => {
+  const [result, setResult] = useState<OptionalChargingStationsResponse>(null);
+  const [error, setError] = useState<OptionalApiError>(null);
+
+  const onStart = useCallback((chargerId) => {
+    fetchEvEnergyApi('chargingsession', 'POST', { user: 1, car_id: 1, charger_id: chargerId })
+      .then(setResult)
+      .catch(setError);
+  }, []);
+
+  return [result, error, onStart];
 };

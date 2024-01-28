@@ -1,5 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { View, StyleSheet, Text, Pressable } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 
 import {
   BORDER_RADIUS_S,
@@ -15,22 +15,19 @@ import { ChargingStationDataItem } from '../hooks';
 
 type Props = {
   item: ChargingStationDataItem;
-  onPress: (id: number) => void;
 };
 
-export const ChargingStationListItem = (props: Props) => {
+export const ChargingStationDetails = (props: Props) => {
   const styles = useTheme(themeableStyles);
+
   return (
-    <Pressable onPress={() => props.onPress(props.item.id)}>
-      <View style={styles.listItem}>
-        <Ionicons style={styles.icon} name="location-sharp" size={32} color={styles.icon.color} />
-        <View>
-          <Text style={styles.title}>{props.item.addressInfo.title}</Text>
-          <Text
-            style={styles.small}>{`${props.item.addressInfo.distance.toFixed(2)} km away`}</Text>
-        </View>
+    <View style={styles.listItem}>
+      <Ionicons style={styles.icon} name="location-sharp" size={32} color={styles.icon.color} />
+      <View>
+        <Text style={styles.title}>{props.item.addressInfo.title}</Text>
+        <Text style={styles.small}>{`${props.item.addressInfo.distance.toFixed(2)} km away`}</Text>
       </View>
-    </Pressable>
+    </View>
   );
 };
 
