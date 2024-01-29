@@ -26,6 +26,11 @@ const config: ExpoConfig = {
   extra: {
     eas: {
       projectId: process.env.EXPO_PROJECT_ID,
+      build: {
+        master: {
+          distribution: 'internal',
+        },
+      },
     },
   },
   updates: {
