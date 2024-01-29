@@ -23,7 +23,13 @@ export const ChargingStationListItem = (props: Props) => {
   return (
     <Pressable onPress={() => props.onPress(props.item.id)}>
       <View style={styles.listItem}>
-        <Ionicons style={styles.icon} name="location-sharp" size={32} color={styles.icon.color} />
+        <Ionicons
+          style={styles.icon}
+          aria-label="POI"
+          name="location-sharp"
+          size={32}
+          color={styles.icon.color}
+        />
         <View>
           <Text style={styles.title}>{props.item.addressInfo.title}</Text>
           <Text

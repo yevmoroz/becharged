@@ -28,12 +28,24 @@ export const ChargingStationDetails = (props: Props) => {
     <View style={styles.container}>
       <Pressable onPress={props.onBack}>
         <View style={styles.row}>
-          <Ionicons style={styles.icon} name="arrow-back" size={32} color={styles.icon.color} />
+          <Ionicons
+            aria-label="Arrow pointing to the left"
+            style={styles.icon}
+            name="arrow-back"
+            size={32}
+            color={styles.icon.color}
+          />
           <Text style={styles.back}>go back to all</Text>
         </View>
       </Pressable>
       <View style={styles.row}>
-        <Ionicons style={styles.icon} name="location-sharp" size={32} color={styles.icon.color} />
+        <Ionicons
+          aria-label="POI"
+          style={styles.icon}
+          name="location-sharp"
+          size={32}
+          color={styles.icon.color}
+        />
         <View>
           <Text style={styles.title}>{props.item.addressInfo.title}</Text>
           <Text
@@ -50,16 +62,28 @@ export const ChargingStationDetails = (props: Props) => {
       {!props.isActive && !chargingError && (
         <Pressable onPress={startCharging}>
           <View style={styles.row}>
-            <Ionicons style={styles.icon} name="flash" size={32} color={styles.icon.color} />
+            <Ionicons
+              aria-label="Charge icon"
+              style={styles.icon}
+              name="flash"
+              size={32}
+              color={styles.icon.color}
+            />
             <View>
-              <Text style={styles.title}>Start Charging!</Text>
+              <Text style={styles.title}>Start Charging</Text>
             </View>
           </View>
         </Pressable>
       )}
       {chargingError && (
         <View style={styles.row}>
-          <Ionicons style={styles.icon} name="warning" size={32} color={styles.icon.color} />
+          <Ionicons
+            aria-label="Warning sign"
+            style={styles.icon}
+            name="warning"
+            size={32}
+            color={styles.icon.color}
+          />
           <View>
             <Text style={styles.title}>Charging is currently unavailable</Text>
           </View>
