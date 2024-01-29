@@ -12,21 +12,29 @@ type Props = {
 };
 
 export const ChargingStationList = (props: Props) => {
+  const [selectedChargingStationId, setSelectedChargingStationId] = useState<number | null>(null);
   const [activeChargingStationId, setActiveChargingStationId] = useState<number | null>(null);
-  const activeChargingStation = useMemo(
-    () => props.items?.find((item) => item.id === activeChargingStationId),
-    [activeChargingStationId]
+  const selectedChargingStation = useMemo(
+    () => props.items?.find((item) => item.id === selectedChargingStationId),
+    [selectedChargingStationId]
   );
 
-  if (activeChargingStation) {
-    return <ChargingStationDetails item={activeChargingStation} />;
+  if (selectedChargingStation) {
+    return (
+      <ChargingStationDetails
+        item={selectedChargingStation}
+        isActive={activeChargingStationId === selectedChargingStationId}
+        onBack={() => setSelectedChargingStationId(null)}
+        onStart={setActiveChargingStationId}
+      />
+    );
   }
 
   return (
     <FlatList
       data={props.items}
       renderItem={({ item }) => (
-        <ChargingStationListItem item={item} onPress={setActiveChargingStationId} />
+        <ChargingStationListItem item={item} onPress={setSelectedChargingStationId} />
       )}
       onRefresh={props.onRefresh}
       refreshing={props.refreshing}

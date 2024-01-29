@@ -18,8 +18,11 @@ Following are consideraitons that can be made for an app that helps with EV char
 -- [ ] on a map (via RNMapBox)
 - [ ] call maps app to get directions
 - [x] start charging for select station
-- [x] refresh list on pull-down
+- [x] refresh list of charging stations on pull-down
 - [ ] user-friendly API handling
+- [ ] consider key storage for list of charging stations
+- [ ] more testing for utils and components
+- [ ] consider react-navigation to better structure moving around
 
 ### References
 - [Expo](https://expo.dev/)
