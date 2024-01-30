@@ -1,15 +1,22 @@
+import { Fragment, useMemo, useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 
 import { ChargingStationList } from './charging-station-list';
+import { ChargingStationMap } from './charging-station-map';
 import { Message } from './message';
 import { useChargingStationsByLocation } from '../charging-station/hooks';
 import { useDeviceLocation } from '../location/hooks';
-import { PAD_4XL } from '../theme/common';
+import { PAD_4XL, PAD_M } from '../theme/common';
 
 export const ChargingStation = () => {
   const [location, locationError, locationNotReady, fetchLocation] = useDeviceLocation();
+  const [selectedChargingStationId, setSelectedChargingStationId] = useState<number | null>(null);
   const [chargingStations, chargingStationsError, chargingStationsNotReady] =
     useChargingStationsByLocation(location);
+  const selectedChargingStation = useMemo(
+    () => chargingStations?.find((item) => item.id === selectedChargingStationId) ?? null,
+    [selectedChargingStationId]
+  );
   const notReadyYet = locationNotReady || chargingStationsNotReady;
 
   let content;
@@ -23,11 +30,26 @@ export const ChargingStation = () => {
     content = <Message>No charging stations found in the area</Message>;
   } else {
     content = (
-      <ChargingStationList
-        items={chargingStations}
-        onRefresh={fetchLocation}
-        refreshing={notReadyYet}
-      />
+      <Fragment>
+        <View style={styles.map}>
+          <ChargingStationMap
+            items={chargingStations}
+            location={location}
+            selectedChargingStation={selectedChargingStation}
+            onMarkerSelected={setSelectedChargingStationId}
+          />
+        </View>
+
+        <View style={styles.list}>
+          <ChargingStationList
+            items={chargingStations}
+            onRefresh={fetchLocation}
+            refreshing={notReadyYet}
+            selectedChargingStation={selectedChargingStation}
+            onChargingStationSelected={setSelectedChargingStationId}
+          />
+        </View>
+      </Fragment>
     );
   }
 
@@ -37,6 +59,13 @@ export const ChargingStation = () => {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
+    height: '100%',
     paddingTop: PAD_4XL,
+  },
+  list: {
+    marginTop: PAD_M,
+  },
+  map: {
+    minHeight: '30%',
   },
 });

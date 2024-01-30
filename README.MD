@@ -25,14 +25,16 @@ Following are consideraitons that can be made for an app that helps with EV char
   - [x] based on device location
   - [x] as a list
   - [ ] based on given location (via mapbox.places API call)
-  - [ ] on a map (via RNMapBox)
-- [ ] call maps app to get directions
+  - [x] on a map (via gmaps)
+- [x] call maps app to get directions
 - [x] start charging for select station
 - [x] refresh list of charging stations on pull-down
 - [x] user-friendly API handling
 - [ ] consider key storage for list of charging stations if list gets too big
-- [ ] more testing for utils and components
+- [ ] more unit testing for utils and components
 - [ ] consider react-navigation to better structure moving around
+- [x] work on unnecessary re-renders of map component
+- [x] consider memoization of expensive calculations
 
 ### References
 - [Expo](https://expo.dev/)

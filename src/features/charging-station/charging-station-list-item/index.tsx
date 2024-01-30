@@ -15,13 +15,13 @@ import { ChargingStationDataItem } from '../hooks';
 
 type Props = {
   item: ChargingStationDataItem;
-  onPress: (id: number) => void;
+  onChargingStationSelected: (id: number) => void;
 };
 
 export const ChargingStationListItem = (props: Props) => {
   const styles = useTheme(themeableStyles);
   return (
-    <Pressable onPress={() => props.onPress(props.item.id)}>
+    <Pressable onPress={() => props.onChargingStationSelected(props.item.id)}>
       <View style={styles.listItem}>
         <Ionicons
           style={styles.icon}

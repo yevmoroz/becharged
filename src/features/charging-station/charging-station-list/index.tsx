@@ -1,30 +1,27 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { FlatList } from 'react-native';
 
 import { ChargingStationDetails } from '../charging-station-details';
 import { ChargingStationListItem } from '../charging-station-list-item';
-import { ChargingStationDataItem } from '../hooks';
+import { ChargingStationDataItem, OptionalChargingStationDataItem } from '../hooks';
 
 type Props = {
   items: ChargingStationDataItem[];
+  selectedChargingStation: OptionalChargingStationDataItem;
+  onChargingStationSelected: (id: number | null) => void;
   onRefresh: () => void;
   refreshing: boolean;
 };
 
 export const ChargingStationList = (props: Props) => {
-  const [selectedChargingStationId, setSelectedChargingStationId] = useState<number | null>(null);
   const [activeChargingStationId, setActiveChargingStationId] = useState<number | null>(null);
-  const selectedChargingStation = useMemo(
-    () => props.items?.find((item) => item.id === selectedChargingStationId),
-    [selectedChargingStationId]
-  );
 
-  if (selectedChargingStation) {
+  if (props.selectedChargingStation) {
     return (
       <ChargingStationDetails
-        item={selectedChargingStation}
-        isActive={activeChargingStationId === selectedChargingStationId}
-        onBack={() => setSelectedChargingStationId(null)}
+        item={props.selectedChargingStation}
+        isActive={activeChargingStationId === props.selectedChargingStation?.id}
+        onBack={() => props.onChargingStationSelected(null)}
         onStart={setActiveChargingStationId}
       />
     );
@@ -34,7 +31,10 @@ export const ChargingStationList = (props: Props) => {
     <FlatList
       data={props.items}
       renderItem={({ item }) => (
-        <ChargingStationListItem item={item} onPress={setSelectedChargingStationId} />
+        <ChargingStationListItem
+          item={item}
+          onChargingStationSelected={props.onChargingStationSelected}
+        />
       )}
       onRefresh={props.onRefresh}
       refreshing={props.refreshing}

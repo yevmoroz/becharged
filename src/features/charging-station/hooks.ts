@@ -10,11 +10,14 @@ export type ChargingStationDataItem = {
   addressInfo: {
     title: string;
     distance: number; // in km
+    latitude: number;
+    longitude: number;
   };
 };
 
 type OptionalApiError = ApiError | null;
 type ChargingStationsResponse = ChargingStationDataItem[];
+export type OptionalChargingStationDataItem = ChargingStationDataItem | null;
 type OptionalChargingStationsResponse = ChargingStationsResponse | null;
 
 /**

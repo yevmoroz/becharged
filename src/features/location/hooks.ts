@@ -15,8 +15,8 @@ const getDeviceCoordinates = async () => {
 };
 
 export type LocationDetails = {
-  latitude: number | null;
-  longitude: number | null;
+  latitude: number;
+  longitude: number;
 };
 
 export type OptionalLocationDetails = LocationDetails | null;
