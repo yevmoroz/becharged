@@ -44,7 +44,7 @@ jobs:
       - name: 🕵️ Types check
         run: npm run test:types
 
-      - name: 🚀 Publish app
+      - name: 🚀 Publish app update
         run: eas update --auto
         env:
           EXPO_PROJECT_ID: ${{ secrets.EXPO_PROJECT_ID }}
