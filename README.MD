@@ -4,10 +4,7 @@ Imagine the world where EV chargin is done seamlessly
 
 ## How to use
 
-
-## How to use
-
-The app is published to Expo and can be used via Expo Go app. You may need to have Expo Go installed on [Android](https://play.google.com/store/apps/details?id=host.exp.exponent) or [iOS](https://apps.apple.com/ca/app/expo-go/id982107779). When it's done, go ahead and scan with the phone QR code to run the app through Expo Go:
+The app is published to Expo and can be used via Expo Go app. You may need to have Expo Go installed on [Android](https://play.google.com/store/apps/details?id=host.exp.exponent) or [iOS](https://apps.apple.com/ca/app/expo-go/id982107779). When it's done, go ahead and scan with the phone QR code to run the app through Expo Go or :
 
 ![](https://qr.expo.dev/eas-update?appScheme=exp&projectId=a60c64b6-a70c-4666-9a7c-19b64e7aa208&channel=master&runtimeVersion=1.0.0&host=u.expo.dev)
 
