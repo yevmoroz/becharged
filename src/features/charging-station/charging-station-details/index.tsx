@@ -1,5 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { View, StyleSheet, Text, Pressable } from 'react-native';
+import { useEffect } from 'react';
+import { View, StyleSheet, Text, Pressable, BackHandler } from 'react-native';
 
 import {
   BORDER_RADIUS_S,
@@ -23,6 +24,14 @@ type Props = {
 export const ChargingStationDetails = (props: Props) => {
   const styles = useTheme(themeableStyles);
   const [chargingError, startCharging] = useStartCharging(props.item.id, props.onStart);
+  useEffect(() => {
+    const onBack = () => {
+      props.onBack();
+      return true;
+    };
+    BackHandler.addEventListener('hardwareBackPress', onBack);
+    return () => BackHandler.removeEventListener('hardwareBackPress', onBack);
+  }, []);
 
   return (
     <View style={styles.container}>
