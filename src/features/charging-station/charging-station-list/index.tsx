@@ -1,7 +1,7 @@
 import { Fragment, useState } from 'react';
 import { FlatList, StyleSheet, Text } from 'react-native';
 
-import { FONT_SIZE_TITLE, PAD_XXL, PAD_S, PAD_L } from '../../theme/common';
+import { FONT_SIZE_TITLE, PAD_XXL, PAD_S, PAD_L, FONT_WEIGHT_BOLD } from '../../theme/common';
 import { Theme, useTheme } from '../../theme/hooks';
 import { ChargingStationDetails } from '../charging-station-details';
 import { ChargingStationListItem } from '../charging-station-list-item';
@@ -53,6 +53,7 @@ const themeableStyles = (theme: Theme) =>
   StyleSheet.create({
     text: {
       fontSize: FONT_SIZE_TITLE,
+      fontWeight: FONT_WEIGHT_BOLD,
       marginHorizontal: PAD_XXL,
       marginVertical: PAD_S,
       paddingHorizontal: PAD_S,

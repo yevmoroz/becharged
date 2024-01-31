@@ -24,16 +24,25 @@ export const ChargingStationListItem = (props: Props) => {
     <Pressable onPress={() => props.onChargingStationSelected(props.item.id)}>
       <View style={styles.listItem}>
         <Ionicons
-          style={styles.icon}
+          style={styles.poiIcon}
           aria-label="POI"
           name="location-sharp"
           size={32}
-          color={styles.icon.color}
+          color={styles.poiIcon.color}
         />
         <View>
           <Text style={styles.title}>{props.item.addressInfo.title}</Text>
           <Text
             style={styles.small}>{`${props.item.addressInfo.distance.toFixed(2)} km away`}</Text>
+        </View>
+        <View style={styles.chevron}>
+          <Ionicons
+            style={styles.chevronIcon}
+            aria-label="chevron pointing to the right"
+            name="chevron-forward-outline"
+            size={32}
+            color={styles.chevronIcon.color}
+          />
         </View>
       </View>
     </Pressable>
@@ -50,11 +59,18 @@ const themeableStyles = (theme: Theme) =>
       backgroundColor: theme.colors.PRIMARY,
       borderRadius: BORDER_RADIUS_S,
       flexDirection: 'row',
+      alignItems: 'center',
     },
-    icon: {
+    poiIcon: {
       marginRight: PAD_M,
-      alignSelf: 'center',
       color: theme.colors.SECONDARY,
+    },
+    chevron: {
+      flex: 1,
+    },
+    chevronIcon: {
+      color: theme.colors.SECONDARY,
+      alignSelf: 'flex-end',
     },
     title: {
       fontSize: FONT_SIZE_TITLE,
