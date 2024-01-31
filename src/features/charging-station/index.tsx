@@ -39,7 +39,6 @@ export const ChargingStation = () => {
             onMarkerSelected={setSelectedChargingStationId}
           />
         </View>
-
         <View style={styles.list}>
           <ChargingStationList
             items={chargingStations}
