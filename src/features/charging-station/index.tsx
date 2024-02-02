@@ -20,12 +20,12 @@ export const ChargingStation = () => {
   const notReadyYet = locationNotReady || chargingStationsNotReady;
 
   let content;
-  if (notReadyYet) {
-    content = <Message>Waiting on charging stations to be ready</Message>;
-  } else if (locationError) {
+  if (locationError) {
     content = <Message>Location access required</Message>;
   } else if (chargingStationsError) {
     content = <Message>Charging stations not available</Message>;
+  } else if (notReadyYet) {
+    content = <Message>Waiting on charging stations to be ready</Message>;
   } else if (!chargingStations?.length) {
     content = <Message>No charging stations found in the area</Message>;
   } else {
