@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import { ApiError } from '../api-error';
-import { fetchApi as fetchEvEnergyApi } from '../ev-energy/utils';
 import { OptionalLocationDetails } from '../location/hooks';
 import { fetchApi as fetchOpenChargeMapApi, getApiUrlForPath } from '../open-charge-map/utils';
 
@@ -58,14 +57,6 @@ export const useStartCharging = (
 ): [ApiError | null, () => void] => {
   const [chargingError, setChargingError] = useState<ApiError | null>(null);
 
-  const startCharging = useCallback(() => {
-    return fetchEvEnergyApi('chargingsession', 'POST', {
-      user: 1,
-      car_id: 1,
-      charger_id: chargerId,
-    })
-      .then(() => onChargingStarted(chargerId))
-      .catch(setChargingError);
-  }, [chargerId]);
+  const startCharging = () => {}
   return [chargingError, startCharging];
 };
